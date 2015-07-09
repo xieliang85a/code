@@ -1,0 +1,5 @@
+WebService.java：webservice文件
+WebServiceService.java:生成客户端调用文件
+CmmsHandler.java:生成客户端调用文件
+Test.java：根据生成的文件进行测试的类
+生成语句：C:\Users\Administrator.Dh-0126013631\Desktop>wsimport -keep -p com.ws.test http://localhost:8888/webservice/cmms_Handler?wsdl

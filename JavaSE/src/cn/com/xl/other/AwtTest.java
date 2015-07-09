@@ -1,0 +1,143 @@
+package cn.com.xl.other;
+import java.awt.*;
+import java.awt.event.*;
+import java.io.File;
+
+public class AwtTest {
+	public AwtTest(){
+		init();
+	}
+	private Frame f;
+	private Button b,b1;
+	private Label lbl;
+	private Dialog d;
+	private MenuBar mb;
+	private Menu m1,m2,m3,m4;
+	private MenuItem mi1,mi2,mi3,mi_exit;
+	private TextField tf;
+	private TextArea ta;
+	private void init(){
+		f = new Frame();
+		f.setTitle("这是我的第一个窗体");
+		f.setBounds(200, 100, 500, 400);
+		f.setLayout(new FlowLayout());
+		
+		mb = new MenuBar();
+		m1 = new Menu("文件");
+		
+		m2 = new Menu("新建");
+		mi_exit = new MenuItem("退出");
+		
+		m4 = new Menu("文本");
+		mi2 = new MenuItem("xml");
+		mi1 = new MenuItem("子项");
+		
+		m4.add(mi1);
+		m2.add(m4);
+		m2.add(mi2);
+		m1.add(m2);
+		m1.add(mi_exit);
+		mb.add(m1);
+		
+		
+		ta = new TextArea();
+		tf = new TextField();
+		b = new Button("查找");
+		tf.setColumns(20);
+		tf.setLocation(45, 20);
+		
+		b.setBounds(10, 20, 30, 15);
+		ta.setBounds(10,50,400,260);
+		
+		b1 = new Button("确定");
+		lbl = new Label();		
+		d = new Dialog(f,"错误提示",true);
+		d.add(lbl);
+		d.add(b1);
+		d.setLayout(new FlowLayout());
+		d.setBounds(400,400,200,100);
+		d.setResizable(false);
+		
+		f.setMenuBar(mb);
+		f.add(b);
+		f.add(tf);
+		f.add(ta);
+		
+		myEvent();
+		f.setVisible(true);
+	}
+	
+	private void myEvent(){
+		//添加窗口关闭监听事件
+		f.addWindowListener(new WindowAdapter() {
+			public void windowClosing(WindowEvent e){
+				System.out.println("窗口关闭了!");
+				System.exit(0);
+			} 
+		});
+		//查找监听事件
+		b.addActionListener(new ActionListener(){
+			
+			public void actionPerformed(ActionEvent e) {
+				fun();
+			}
+			
+		});
+		//对话框确定监听事件
+		b1.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent e) {
+				d.setVisible(false);
+			}
+			
+		});
+		
+		//对查找文本框实施监听
+		tf.addKeyListener(new KeyAdapter() {
+			public void keyPressed(KeyEvent e){
+				if(e.getKeyCode()==KeyEvent.VK_ENTER){
+					fun();
+				}
+			}
+		});
+		
+		//对话框关闭事件
+		d.addWindowListener(new WindowAdapter(){
+			public void windowClosing(WindowEvent e){
+				d.setVisible(false);
+			}
+		});
+		
+		//菜单中退出事件
+		mi_exit.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent e){
+				System.exit(0);
+			}
+		});
+	}
+	
+//	private void dialogOP(){
+//		b1 = new Button("确定");
+//		lbl = new Label();
+//		d = new Dialog(f,"错误提示",true);
+//		d.setVisible(true);
+//	}
+	private void fun(){
+		ta.setText("");
+		String dir = tf.getText();
+		File file = new File(dir);
+		if(file.exists()&&file.isDirectory()){
+			String [] fie = file.list();
+			for(String f : fie){
+				ta.append(f+"\r\n");
+			}
+			
+		}else{			
+			lbl.setText("对不起,您输入的"+dir+"查找不存在!");
+			d.setVisible(true);
+		}
+	}
+	public static void main(String[] args)throws Exception {
+		new AwtTest();
+	}
+}
+

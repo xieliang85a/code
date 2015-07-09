@@ -1,0 +1,59 @@
+package cn.com.xl.other;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.io.PrintStream;
+import java.util.Properties;
+
+
+
+public class FileCopy {
+	public static void main(String[] args) throws Exception{
+		//Properties p = System.getProperties();
+		
+		//p.list(new PrintStream("sys_info.txt"));
+	    //BufferedReader br = new BufferedReader(new FileReader(file)) 
+//		String filename = "d:\\a.txt";
+//		File f = new File(filename);
+//		FileWriter fw = new FileWriter("d:\\a_c.txt");
+//		BufferedReader br = null;
+//		try {
+//			br = new BufferedReader(new InputStreamReader(new FileInputStream(f)));
+//			while(br.ready()){
+//				fw.write(br.readLine());
+//				fw.flush();
+//				
+//			}
+//		} catch (FileNotFoundException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}finally{
+//			fw.close();
+//			br.close();
+//		}
+		//new FileCopy().copyFile("d:\\e.jpg", "d:\\ee.bmp");
+		
+	}
+	public boolean copyFile(String sourceFile,String descFile)throws Exception{
+		InputStream is = new FileInputStream(sourceFile);//创建输入流
+		
+		
+		
+		OutputStream os = new FileOutputStream(descFile);
+		
+		
+		
+		byte [] b = new byte[is.available()];
+		while(is.read(b, 0,b.length)!=-1){
+			os.write(b);
+			os.flush();
+			is.available();
+		}
+		os.close();
+		is.close();
+		return false;
+	}
+}
+
+

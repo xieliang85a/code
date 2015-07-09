@@ -1,0 +1,47 @@
+package cn.com.xl.other;
+
+/** 
+ * 工具类，将传入的对象转换成一个字节数组 
+ *  
+ */
+
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+
+public class ObjectChangeToByte {
+	public static byte[] changeToByte(Object obj) {
+		byte[] by = null;
+
+		try {
+			ByteArrayOutputStream bos = new ByteArrayOutputStream();
+			ObjectOutputStream oos = new ObjectOutputStream(bos);
+			oos.writeObject(obj);
+			by = bos.toByteArray();
+			System.out.println("byte:" + by.length);
+			bos.close();
+			oos.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return by;
+	}
+
+	public static Object changeToObject(byte[] by) {
+		Object obj = null;
+		try {
+			ByteArrayInputStream bis = new ByteArrayInputStream(by);
+			ObjectInputStream ois = new ObjectInputStream(bis);
+			obj = ois.readObject();
+			bis.close();
+			ois.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+		return obj;
+	}
+}

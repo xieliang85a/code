@@ -1,0 +1,61 @@
+package cn.com.xl.other;
+
+import java.net.DatagramPacket;
+import java.net.DatagramSocket;
+import java.net.InetAddress;
+import java.net.UnknownHostException;
+import java.io.*;
+
+class UdpDemo {
+	
+	
+	public static void main(String[] args) throws Exception{
+		final DatagramSocket send = new DatagramSocket(6666);//指定本发送方端口号
+		new Thread(new Runnable(){
+			public void run(){
+				BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+				String data = null;
+				try {
+					while((data=br.readLine())!=null){
+						if("886".equals(data))break;
+						byte [] b = data.getBytes();
+						try {
+							DatagramPacket dp = new DatagramPacket(b, b.length, InetAddress.getByName("192.168.0.8"), 5555);
+							send.send(dp);
+							
+						} catch (UnknownHostException e) {
+							
+						}
+					}
+				} catch (IOException e) {
+					System.out.println("数据发送失败");
+				}
+				
+			}
+		}
+				
+		).start();
+		
+		//接收
+		final DatagramSocket receive = new DatagramSocket(5555);//设置接收方端口号
+		new Thread(new Runnable(){
+			public void run(){
+				while(1==1){
+					byte [] buf = new byte[1024];
+					DatagramPacket dp = new DatagramPacket(buf,0,buf.length);
+					try {
+						receive.receive(dp);
+						System.out.println(dp.getAddress().getHostName()+":"+new String(dp.getData(),0,dp.getLength()));
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					
+					
+				}
+				
+			}
+		}).start();
+	}
+	
+}
