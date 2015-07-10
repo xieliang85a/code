@@ -18,8 +18,8 @@ import javax.crypto.Cipher;
 
 /**
  * RSA安全编码组件
- * 
- * @author
+ * 电子（数字）签名，包含非对称加密
+ * @author xieliang
  * @version 0
  * @since 0
  */
