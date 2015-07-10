@@ -13,7 +13,11 @@ import javax.crypto.spec.DESKeySpec;
 import sun.misc.BASE64Decoder;
 import sun.misc.BASE64Encoder;
 
-
+/**
+ * 对称加密
+ * @author xieliang
+ *
+ */
 public class DESUtil {
     //算法名称 
     public static final String KEY_ALGORITHM = "DES";

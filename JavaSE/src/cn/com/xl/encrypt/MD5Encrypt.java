@@ -8,7 +8,7 @@ class MD5Encrypt
 {
 	public static void main(String[] args) throws Exception{
 		//encrypt(args);//加密
-		encrypt(new String[]{"1"});
+		encrypt(new String[]{"明文"});
 	}
 	/*
 	 * 加密

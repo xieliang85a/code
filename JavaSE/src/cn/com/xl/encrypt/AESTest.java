@@ -15,7 +15,7 @@ import javax.crypto.spec.SecretKeySpec;
 
 /**
  * AESTest.java
- * 
+ * 对称加密
  * @author Techzero
  * @Email techzero@163.com
  * @Time 2013-12-12 下午1:25:44

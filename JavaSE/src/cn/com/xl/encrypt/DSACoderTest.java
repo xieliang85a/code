@@ -19,6 +19,7 @@ public class DSACoderTest {
         // 产生签名
         String sign = DSACoder.sign(data, privateKey);
         System.err.println("签名:\r" + sign);
+        //data = "1".getBytes();
         // 验证签名
         boolean status = DSACoder.verify(data, publicKey, sign);
         System.err.println("状态:\r" + status);

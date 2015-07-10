@@ -13,7 +13,11 @@ import java.security.spec.PKCS8EncodedKeySpec;
 import java.security.spec.X509EncodedKeySpec;
 import java.util.HashMap;
 import java.util.Map;
-
+/**
+ * 电子（数字）签名，包含非对称加密
+ * @author xieliang
+ *
+ */
 public abstract class DSACoder extends Coder {
     public static final String ALGORITHM = "DSA";
    

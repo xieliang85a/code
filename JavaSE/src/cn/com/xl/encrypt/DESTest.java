@@ -1,7 +1,6 @@
 package cn.com.xl.encrypt;
 
 import java.security.Key;
-import java.security.SecureRandom;
 import java.security.spec.AlgorithmParameterSpec;
 
 import javax.crypto.Cipher;
@@ -11,7 +10,11 @@ import javax.crypto.spec.IvParameterSpec;
 
 import sun.misc.BASE64Decoder;
 import sun.misc.BASE64Encoder;
-
+/**
+ * 对称加密
+ * @author xieliang
+ *
+ */
 public class DESTest {
 	public static final String ALGORITHM_DES = "DES/CBC/PKCS5Padding";
 	public static void main(String[] args) {
