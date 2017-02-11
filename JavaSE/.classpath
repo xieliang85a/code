@@ -16,5 +16,6 @@
 	<classpathentry kind="lib" path="lib/paranamer-2.1.jar"/>
 	<classpathentry kind="lib" path="lib/bouncycastle.jar"/>
 	<classpathentry kind="lib" path="lib/spring-core-4.1.5.RELEASE.jar"/>
+	<classpathentry kind="lib" path="lib/faceppsdk.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
