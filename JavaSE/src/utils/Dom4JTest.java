@@ -2,12 +2,14 @@ package utils;
 
 import java.io.FileOutputStream;
 import java.util.Iterator;
+import java.util.List;
 
 import org.dom4j.Branch;
 import org.dom4j.Document;
 import org.dom4j.DocumentHelper;
 import org.dom4j.Element;
 import org.dom4j.Node;
+import org.dom4j.QName;
 import org.dom4j.io.OutputFormat;
 import org.dom4j.io.SAXReader;
 import org.dom4j.io.XMLWriter;
@@ -36,16 +38,29 @@ public class Dom4JTest {
 		SAXReader reader = new SAXReader();
 		Document document = reader.read("src//Test.xml");
 		Element root = document.getRootElement();
-		read(root);
+		//read(root);
+		
+		/**
+		 * 以下是根据xpath的方式查找节点，并替换相应内容
+		 */
+		//Node node = root.selectSingleNode("//中国/*[@id='"+id+"' and @name='"+name+"']");
+		Node node = root.selectSingleNode("广州/白云");
+		System.out.println(node.getText());
+		node.setText("123123");
+		/**
+		 * 以下是给要节点添加内容的方式
+		 */
 		//----------默认形式加入元素----------------------
 //		Element element = root.addElement("广州");
 //		element.addElement(QName.get("白云")).setText("1");
 //		element.addElement("天河").setText("2");
-		//--------指定位置添加元素--------------------
+//		//--------指定位置添加元素--------------------
 //		List list = root.elements();
 //		list.add(1, addElement());
-		//--------------------------
-		//write(document);
+//		//--------------------------
+//		
+		write(document);
+		
 
 	}
 	
