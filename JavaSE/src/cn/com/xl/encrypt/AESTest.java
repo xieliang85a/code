@@ -46,6 +46,14 @@ public class AESTest {
 	public static String encrypt(String content, String key) {
 		try {
 			KeyGenerator kgen = KeyGenerator.getInstance("AES");
+			
+			/*
+			 * 以下两行代码是解决linux下产生错误问题
+			 */
+			SecureRandom random = SecureRandom.getInstance("SHA1PRNG");
+	        random.setSeed(key.getBytes());
+	        
+	        
 			kgen.init(128, new SecureRandom(key.getBytes()));
 			SecretKey secretKey = kgen.generateKey();
 			byte[] enCodeFormat = secretKey.getEncoded();
@@ -101,6 +109,12 @@ public class AESTest {
 		}
 		try {
 			KeyGenerator kgen = KeyGenerator.getInstance("AES");
+			/*
+			 * 以下两行代码是解决linux下产生错误问题
+			 */
+			SecureRandom random = SecureRandom.getInstance("SHA1PRNG");
+	        random.setSeed(key.getBytes());
+	        
 			kgen.init(128, new SecureRandom(key.getBytes()));
 			SecretKey secretKey = kgen.generateKey();
 			byte[] enCodeFormat = secretKey.getEncoded();
